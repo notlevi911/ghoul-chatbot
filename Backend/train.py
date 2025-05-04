@@ -1,7 +1,10 @@
 import google.generativeai as genai
+import dotenv as dotenv
+
+dotenv.load_dotenv()
 
 # Replace with your actual API key
-genai.configure(api_key="AIzaSyDu6SutMtjIVe9lJEnMhOw26QCtTM87hzQ")
+genai.configure(api_key=dotenv.get_key(".env", "GEMINI_API_KEY"))
 
 # Define the base prompt
 base_prompt =  """
