@@ -12,6 +12,7 @@ function App() {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -20,6 +21,36 @@ function App() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Ensure input is visible on mobile
+  useEffect(() => {
+    const handleResize = () => {
+      // Force redraw for mobile browsers
+      document.body.style.height = window.innerHeight + 'px';
+      
+      // Scroll to bottom on resize
+      scrollToBottom();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    
+    // Initial call
+    handleResize();
+    
+    // Make sure virtual keyboard doesn't break layout
+    if (inputRef.current) {
+      inputRef.current.addEventListener('focus', () => {
+        // Small delay to let keyboard appear
+        setTimeout(scrollToBottom, 300);
+      });
+    }
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -104,6 +135,7 @@ function App() {
           <div className="input-wrapper">
             <button className="emoji-button">😊</button>
             <input
+              ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) =>
