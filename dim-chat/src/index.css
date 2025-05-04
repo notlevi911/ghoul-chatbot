@@ -1,14 +1,21 @@
 /* Base styles */
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .app {
@@ -19,6 +26,7 @@ html, body {
   background-color: #f0f2f5;
   padding: 10px;
   width: 100%;
+  position: relative;
 }
 
 .chat-container {
@@ -41,6 +49,7 @@ html, body {
   padding: 15px;
   background-color: #075e54;
   color: white;
+  height: 70px; /* Fixed height for mobile calculations */
 }
 
 .header-info {
@@ -235,6 +244,8 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
   
   .app {
@@ -252,10 +263,21 @@ html, body {
     flex-direction: column;
   }
   
+  .chat-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+  
   .chat-messages {
+    margin-top: 70px; /* Height of header */
+    margin-bottom: 60px; /* Height of input area */
+    height: auto;
     flex: 1;
     overflow-y: auto;
-    height: calc(100vh - 130px); /* Subtract header and input area height */
+    padding-bottom: 20px;
   }
   
   .chat-input-container {
