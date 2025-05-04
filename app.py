@@ -3,7 +3,7 @@ import google.generativeai as genai
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from frontend
+CORS(app)  
 
 genai.configure(api_key="AIzaSyDu6SutMtjIVe9lJEnMhOw26QCtTM87hzQ")
 
