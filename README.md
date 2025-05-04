@@ -176,9 +176,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+Your Name - [@Soubhagya](https://x.com/Soubhag24825728)
 
-Project Link: [https://github.com/yourusername/ghoul-chatbot](https://github.com/yourusername/ghoul-chatbot)
+Project Link: [https://github.com/notlevi911/ghoul-chatbot.git](https://github.com/notlevi911/ghoul-chatbot.git)
 
 ---
 Made with ❤️ by [Your Name]
