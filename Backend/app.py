@@ -7,7 +7,7 @@ import os
 dotenv.load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  
+CORS(app, resources={r"/chat": {"origins": "https://ghoul-chatbot-jelf.vercel.app"}}, methods=["POST", "OPTIONS"], allow_headers=["Content-Type"])
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 model = genai.GenerativeModel("gemini-1.5-pro")
@@ -114,6 +114,9 @@ use the following dataset as an example, i call u dim because ur face is like a 
 
 @app.route("/chat", methods=["POST"])
 def chat_with_gemini():
+    if request.method == "OPTIONS":
+        return '', 200  # Allow preflight
+
     data = request.get_json()
     user_input = data.get("prompt", "")
 
